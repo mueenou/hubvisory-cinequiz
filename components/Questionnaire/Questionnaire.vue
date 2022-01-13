@@ -51,6 +51,16 @@
 
 <script>
 export default {
+  props: {
+    isGameOver: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    isReady: {
+      type: Boolean,
+    },
+  },
   data() {
     return {
       questionCounter: 0,
@@ -108,6 +118,8 @@ export default {
         this.loadImages(this.currentQuestion.actor, this.currentQuestion.movie);
         this.questionCounter += 1;
       } else {
+        this.$emit("gameover", true);
+        this.$emit("isready", false);
         console.log(
           `Game over, you got ${
             (this.rightAnswers / this.questions.length) * 100

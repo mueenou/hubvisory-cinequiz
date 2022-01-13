@@ -4,11 +4,23 @@
     <button
       v-if="!isReady"
       class="my-2 py-2 px-4 shadow-md rounded-full"
-      @click="isReady = true"
+      @click="
+        () => {
+          isReadyHandler(true);
+          gameOverHandler(false);
+        }
+      "
     >
       Jouer
     </button>
-    <Questionnaire v-if="isReady" class="mt-40" />
+    <Questionnaire
+      v-if="isReady"
+      class="mt-40"
+      :is-game-over="isGameOver"
+      @gameover="gameOverHandler"
+      @isready="isReadyHandler"
+    />
+    <GameOver v-if="isGameOver" />
   </div>
 </template>
 
@@ -18,7 +30,17 @@ export default {
   data() {
     return {
       isReady: false,
+      isGameOver: false,
+      score: "",
     };
+  },
+  methods: {
+    gameOverHandler(payload) {
+      this.isGameOver = payload;
+    },
+    isReadyHandler(payload) {
+      this.isReady = payload;
+    },
   },
 };
 </script>
