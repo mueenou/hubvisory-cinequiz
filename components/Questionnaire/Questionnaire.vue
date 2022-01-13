@@ -1,22 +1,49 @@
 <template>
-  <div class="questionnaire w-1/4 shadow-xl rounded-xl px-4 py-16">
-    <div class="flex flex-col items-center justify-center">
-      <h2>Question 1:</h2>
+  <div
+    class="questionnaire max-w-[420px] min-w-[370px] overflow-hidden shadow-xl rounded-xl px-4 py-10"
+  >
+    <div>
+      <p>Progress</p>
       <div
-        class="flex items-center px-10 mt-4 justify-center border border-1 rounded-xl h-20 text-center"
+        class="progress-bar-container w-100 h-2 bg-gray-100 rounded-full shadow-sm mt-2"
       >
-        {{ currentQuestion.question }}
+        <div
+          :style="{
+            width: (currentQuestion.id / questions.length) * 100 + '%',
+          }"
+          class="progress-bar h-2 bg-green-300 rounded-full"
+        ></div>
       </div>
     </div>
-    <div class="mt-2 flex flex-col items-center">
+    <div class="flex flex-col mt-4 items-center justify-center">
+      <h2>Question {{ currentQuestion.id }} out of {{ questions.length }}:</h2>
+      <div
+        class="flex items-center w-[100%] px-10 mt-4 justify-center border border-1 rounded-xl h-20 text-center"
+      >
+        Did {{ currentQuestion.actor }} play in {{ currentQuestion.movie }} ?
+      </div>
+    </div>
+    <div class="flex flex-row mt-4">
+      <img
+        :src="'https://image.tmdb.org/t/p/w500' + actorImgPath"
+        alt="actor poster"
+        class="min-w-[150px] rounded-xl shadow-md mr-2"
+      />
+      <img
+        :src="'https://image.tmdb.org/t/p/w500' + movieImgPath"
+        alt="movie poster"
+        class="min-w-[150px] rounded-xl shadow-md"
+      />
+    </div>
+    <div class="mt-4 flex flex-row items-center justify-evenly">
       <button
         v-for="(item, index) in currentQuestion.answers"
         ref="chosenAnswer"
         :key="index"
-        class="default-view my-2 py-2 px-4 shadow-md rounded-full"
+        class="default-view w-16 my-2 py-2 px-4 shadow-md rounded-full uppercase"
         @click="answerClicked(index, item)"
       >
-        <span>{{ index }}</span> {{ item }}
+        {{ item }}
       </button>
     </div>
   </div>
@@ -28,15 +55,44 @@ export default {
     return {
       questionCounter: 0,
       currentQuestion: 0,
+      rightAnswers: 0,
+      wrongAnswers: 0,
+      actorImgPath: "",
+      movieImgPath: "",
       questions: [
         {
-          question: "Which of these movies is part of the MCU?",
-          answers: ["Batman", "Thor", "Suicide squad"],
+          id: 1,
+          actor: "Tobey Maguire",
+          movie: "Spider-man: No way home",
+          answers: ["yes", "no"],
+          correct_answer: 1,
+        },
+        {
+          id: 2,
+          actor: "Zendaya",
+          movie: "Avengers",
+          answers: ["yes", "no"],
           correct_answer: 2,
         },
         {
-          question: "Who is the film director of 2000 Spider-man?",
-          answers: ["Sam Raimi", "Jon Watts", "Mike Flannagan"],
+          id: 3,
+          actor: "Ben Affleck",
+          movie: "The Dark knight",
+          answers: ["yes", "no"],
+          correct_answer: 2,
+        },
+        {
+          id: 4,
+          actor: "Leonardo Dicaprio",
+          movie: "The wolf of wall street",
+          answers: ["yes", "no"],
+          correct_answer: 1,
+        },
+        {
+          id: 5,
+          actor: "Christian Bale",
+          movie: "The dark knight",
+          answers: ["yes", "no"],
           correct_answer: 1,
         },
       ],
@@ -49,9 +105,38 @@ export default {
     loadQuestion() {
       if (this.questions.length > this.questionCounter) {
         this.currentQuestion = this.questions[this.questionCounter];
+        this.loadImages(this.currentQuestion.actor, this.currentQuestion.movie);
+        this.questionCounter += 1;
       } else {
-        console.log("out of questions");
+        console.log(
+          `Game over, you got ${
+            (this.rightAnswers / this.questions.length) * 100
+          }% of right answers.`
+        );
       }
+    },
+    clearSelected(buttonSelected) {
+      setTimeout(() => {
+        buttonSelected.classList.remove("correct-view");
+        buttonSelected.classList.remove("incorrect-view");
+        buttonSelected.classList.add("default-view");
+        this.loadQuestion();
+      }, 1000);
+    },
+    async loadImages(actor, movie) {
+      // https://api.themoviedb.org/3/search/movie?api_key=aeae1288904d0de30a4bd9f68d9a6e2f&query=spiderman:no+way+home
+      const encodedMovie = encodeURI(movie);
+      const encodedActor = encodeURI(actor);
+      console.log(encodedMovie);
+      const movieResult = await this.$axios.get(
+        `movie?api_key=aeae1288904d0de30a4bd9f68d9a6e2f&query=${encodedMovie}`
+      );
+      const actorResult = await this.$axios.get(
+        `person?api_key=aeae1288904d0de30a4bd9f68d9a6e2f&query=${encodedActor}`
+      );
+      this.movieImgPath = movieResult.data.results[0].poster_path;
+      console.log(actorResult.data.results[0].profile_path);
+      this.actorImgPath = actorResult.data.results[0].profile_path;
     },
     answerClicked(index, choice) {
       const chosenItemNumber = index + 1;
@@ -60,15 +145,16 @@ export default {
       console?.log(chosenItemNumber, choice);
       if (chosenItemNumber === this.currentQuestion.correct_answer) {
         console.log("you're right");
+        this.rightAnswers += 1;
         this.$refs["chosenAnswer"][index].classList.add("correct-view");
         this.$refs["chosenAnswer"][index].classList.remove("default-view");
       } else {
         console.log("you're wrong");
+        this.wrongAnswers += 1;
         this.$refs["chosenAnswer"][index].classList.add("incorrect-view");
         this.$refs["chosenAnswer"][index].classList.remove("default-view");
       }
-      this.questionCounter += 1;
-      this.loadQuestion();
+      this.clearSelected(buttonContainer);
     },
   },
 };
@@ -81,7 +167,7 @@ export default {
 }
 
 .correct-view {
-  border: 2px solid green;
+  border: 2px solid rgb(34, 212, 34);
 }
 
 .incorrect-view {
