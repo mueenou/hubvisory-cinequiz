@@ -1,6 +1,47 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <h1>Bienvenue dans le quiz dédié aux amateurs de cinéma, bonne chance !</h1>
+  <div class="flex flex-col items-center justify-center text-white">
+    <blockquote class="italic text-xl my-8 py-5">
+      {{
+        score.length > 0
+          ? "Welcome back friend !"
+          : "Welcome to the quiz dedicated to cinema lovers, good luck !"
+      }}
+    </blockquote>
+    <div class="w-[70%] text-center">
+      <h2>Your latest scores :</h2>
+      <div v-if="scoreToShow.length > 0">
+        <div
+          v-for="(item, index) in scoreToShow.slice(0, 5)"
+          :key="index"
+          class="flex flex-row min-w-[340px] items-center justify-start max-w-[420px] mx-auto"
+        >
+          <div
+            class="progress-bar-container w-[100%] mx-auto h-3 bg-gray-100 rounded-full shadow-sm my-5 mr-3"
+          >
+            <div
+              :style="{
+                width: item + '%',
+              }"
+              :class="scoreBarColor(item)"
+              class="progress-bar h-3 rounded-full ease-in-out"
+            ></div>
+          </div>
+          <span class="w-16">{{ item }}%</span>
+        </div>
+      </div>
+      <div v-else>
+        <span>You haven't played yet</span>
+      </div>
+    </div>
+    <Questionnaire
+      v-if="isReady"
+      class="mt-10"
+      :is-game-over="isGameOver"
+      @gameover="gameOverHandler"
+      @isready="isReadyHandler"
+      @score="setScore"
+    />
+    <GameOver v-if="isGameOver" :last-score="score[0]" />
     <button
       v-if="!isReady"
       class="my-2 py-2 px-4 shadow-md rounded-full"
@@ -11,16 +52,8 @@
         }
       "
     >
-      Jouer
+      {{ score.length || null > 0 ? "Play again" : "Play" }}
     </button>
-    <Questionnaire
-      v-if="isReady"
-      class="mt-40"
-      :is-game-over="isGameOver"
-      @gameover="gameOverHandler"
-      @isready="isReadyHandler"
-    />
-    <GameOver v-if="isGameOver" />
   </div>
 </template>
 
@@ -31,8 +64,12 @@ export default {
     return {
       isReady: false,
       isGameOver: false,
-      score: "",
+      score: this.$cookies.get("user-score") || [],
+      scoreToShow: [],
     };
+  },
+  mounted() {
+    this.scoreToShow = this.score;
   },
   methods: {
     gameOverHandler(payload) {
@@ -40,6 +77,26 @@ export default {
     },
     isReadyHandler(payload) {
       this.isReady = payload;
+    },
+    setScore(payload) {
+      this.score.unshift(payload);
+      this.$cookies.set("user-score", this.score, {
+        path: "/",
+        maxAge: 10 * 365 * 24 * 60 * 60,
+      });
+      this.setScoreToShow();
+    },
+    setScoreToShow() {
+      this.scoreToShow = this.score;
+    },
+    scoreBarColor(score) {
+      if (score > 90) return "bg-green-600";
+      if (score > 70) return "bg-green-500";
+      if (score > 50) return "bg-green-400";
+      if (score > 30) return "bg-red-300";
+      if (score > 10) return "bg-red-500";
+      if (score > 0) return "bg-red-600";
+      return "bg-gray-300";
     },
   },
 };

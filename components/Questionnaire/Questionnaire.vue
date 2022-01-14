@@ -1,6 +1,6 @@
 <template>
   <div
-    class="questionnaire max-w-[420px] min-w-[370px] overflow-hidden shadow-xl rounded-xl px-4 py-10"
+    class="questionnaire max-w-[420px] min-w-[340px] overflow-hidden shadow-xl rounded-xl px-4 py-10"
   >
     <div>
       <p>Progress</p>
@@ -120,6 +120,7 @@ export default {
       } else {
         this.$emit("gameover", true);
         this.$emit("isready", false);
+        this.$emit("score", (this.rightAnswers / this.questions.length) * 100);
         console.log(
           `Game over, you got ${
             (this.rightAnswers / this.questions.length) * 100
@@ -133,7 +134,7 @@ export default {
         buttonSelected.classList.remove("incorrect-view");
         buttonSelected.classList.add("default-view");
         this.loadQuestion();
-      }, 1000);
+      }, 500);
     },
     async loadImages(actor, movie) {
       // https://api.themoviedb.org/3/search/movie?api_key=aeae1288904d0de30a4bd9f68d9a6e2f&query=spiderman:no+way+home

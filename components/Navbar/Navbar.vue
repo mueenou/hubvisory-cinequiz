@@ -1,5 +1,5 @@
 <template>
-  <nav class="px-2 flex flex-row relative items-center justify-between">
+  <nav class="px-2 py-2 flex flex-row relative items-center justify-between">
     <div class="font-bold text-white text-xl tracking-widest">
       CINEQUIZ<span class="text-2xl">.</span>
     </div>
