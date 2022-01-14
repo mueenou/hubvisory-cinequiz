@@ -13,7 +13,7 @@
         <div
           v-for="(item, index) in scoreToShow.slice(0, 5)"
           :key="index"
-          class="flex flex-row min-w-[340px] items-center justify-start max-w-[420px] mx-auto"
+          class="flex flex-row min-w-[250px] items-center justify-start max-w-[420px] mx-auto"
         >
           <div
             class="progress-bar-container w-[100%] mx-auto h-3 bg-gray-100 rounded-full shadow-sm my-5 mr-3"

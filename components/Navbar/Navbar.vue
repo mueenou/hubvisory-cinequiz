@@ -6,14 +6,14 @@
     <div class="relative text-white">
       <button
         v-if="dropdownOpen === true"
-        class="relative z-10 block rounded-md bg-light ring-2 ring-white py-1 px-2 focus:outline-none"
+        class="relative z-10 block rounded-md ring-2 ring-white py-1 px-2 focus:outline-none"
         @click="dropdownOpen = !dropdownOpen"
       >
         click la frère
       </button>
       <button
         v-else
-        class="relative z-10 block rounded-md bg-light ring-2 ring-white py-1 px-2 focus:outline-none"
+        class="relative z-10 block rounded-md ring-2 ring-white py-1 px-2 focus:outline-none"
         @click="dropdownOpen = !dropdownOpen"
       >
         click la frère
@@ -25,31 +25,31 @@
     >
       <a
         href="#"
-        class="block px-4 py-2 text-sm tracking-widest capitalize text-gray-700 hover:bg-primary hover:text-white"
+        class="block px-4 py-2 text-sm tracking-widest capitalize text-gray-700 hover:bg-green-300 hover:text-white"
       >
         your profile
       </a>
       <a
         href="#"
-        class="block px-4 py-2 text-sm tracking-widest capitalize text-gray-700 hover:bg-primary hover:text-white"
+        class="block px-4 py-2 text-sm tracking-widest capitalize text-gray-700 hover:bg-green-300 hover:text-white"
       >
         Your projects
       </a>
       <a
         href="#"
-        class="block px-4 py-2 text-sm tracking-widest capitalize text-gray-700 hover:bg-primary hover:text-white"
+        class="block px-4 py-2 text-sm tracking-widest capitalize text-gray-700 hover:bg-green-300 hover:text-white"
       >
         Help
       </a>
       <a
         href="#"
-        class="block px-4 py-2 text-sm tracking-widest capitalize text-gray-700 hover:bg-primary hover:text-white"
+        class="block px-4 py-2 text-sm tracking-widest capitalize text-gray-700 hover:bg-green-300 hover:text-white"
       >
         Settings
       </a>
       <a
         href="#"
-        class="block px-4 py-2 text-sm tracking-widest capitalize text-gray-700 hover:bg-primary hover:text-white"
+        class="block px-4 py-2 text-sm tracking-widest capitalize text-gray-700 hover:bg-green-300 hover:text-white"
       >
         Sign Out
       </a>
