@@ -10,7 +10,7 @@
     <div class="w-[70%] text-center">
       <div v-if="score && score.length > 0">
         <h2>Highest score :</h2>
-        {{ Math.max(...score) }}
+        {{ Math.max(...score) }} %
       </div>
       <div v-if="scoreToShow.length > 0">
         <h2>Latest scores :</h2>
@@ -113,5 +113,11 @@ export default {
   backdrop-filter: blur(4.5px);
   -webkit-backdrop-filter: blur(4.5px);
   border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.progress-bar-container {
+  background: rgba(116, 192, 253, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
 }
 </style>
