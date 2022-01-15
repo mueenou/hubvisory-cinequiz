@@ -8,8 +8,12 @@
       }}
     </blockquote>
     <div class="w-[70%] text-center">
-      <h2>Your latest scores :</h2>
+      <div v-if="score && score.length > 0">
+        <h2>Highest score :</h2>
+        {{ Math.max(...score) }}
+      </div>
       <div v-if="scoreToShow.length > 0">
+        <h2>Latest scores :</h2>
         <div
           v-for="(item, index) in scoreToShow.slice(0, 5)"
           :key="index"
@@ -20,7 +24,7 @@
           >
             <div
               :style="{
-                width: item + '%',
+                width: Math.round(item) + '%',
               }"
               :class="scoreBarColor(item)"
               class="progress-bar h-3 rounded-full ease-in-out"
@@ -44,7 +48,7 @@
     <GameOver v-if="isGameOver" :last-score="score[0]" />
     <button
       v-if="!isReady"
-      class="my-2 py-2 px-4 shadow-md rounded-full"
+      class="play-btn my-2 py-2 px-4 shadow-md rounded-full"
       @click="
         () => {
           isReadyHandler(true);
@@ -79,7 +83,7 @@ export default {
       this.isReady = payload;
     },
     setScore(payload) {
-      this.score.unshift(payload);
+      this.score.unshift(Math.round(payload));
       this.$cookies.set("user-score", this.score, {
         path: "/",
         maxAge: 10 * 365 * 24 * 60 * 60,
@@ -101,3 +105,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.play-btn {
+  background: rgba(116, 192, 253, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+</style>

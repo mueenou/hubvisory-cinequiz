@@ -1,6 +1,6 @@
 <template>
   <div
-    class="questionnaire max-w-[420px] min-w-[340px] overflow-hidden shadow-xl rounded-xl px-4 py-10"
+    class="questionnaire border border-gray-200 max-w-[420px] min-w-[340px] lg:w-[420px] overflow-hidden shadow-xl rounded-xl px-4 py-10"
   >
     <div>
       <p>Progress</p>
@@ -9,7 +9,8 @@
       >
         <div
           :style="{
-            width: (currentQuestion.id / questions.length) * 100 + '%',
+            width:
+              Math.floor((currentQuestion.id / questions.length) * 100) + '%',
           }"
           class="progress-bar h-2 bg-green-300 rounded-full"
         ></div>
@@ -40,7 +41,8 @@
         v-for="(item, index) in currentQuestion.answers"
         ref="chosenAnswer"
         :key="index"
-        class="default-view w-16 my-2 py-2 px-4 shadow-md rounded-full uppercase"
+        class="default-view w-16 my-2 py-2 px-4 shadow-md rounded-full uppercase duration-300"
+        :class="[item === 'yes' ? 'bg-yes-btn' : 'bg-no-btn']"
         @click="answerClicked(index, item)"
       >
         {{ item }}
@@ -105,6 +107,20 @@ export default {
           answers: ["yes", "no"],
           correct_answer: 1,
         },
+        {
+          id: 6,
+          actor: "Clint Eastwood",
+          movie: "Scary movie",
+          answers: ["yes", "no"],
+          correct_answer: 2,
+        },
+        {
+          id: 7,
+          actor: "Jason Statham",
+          movie: "Fast & Furious",
+          answers: ["yes", "no"],
+          correct_answer: 1,
+        },
       ],
     };
   },
@@ -141,6 +157,7 @@ export default {
       const encodedMovie = encodeURI(movie);
       const encodedActor = encodeURI(actor);
       console.log(encodedMovie);
+      // API KEY to be put in a .env file
       const movieResult = await this.$axios.get(
         `movie?api_key=aeae1288904d0de30a4bd9f68d9a6e2f&query=${encodedMovie}`
       );
@@ -175,8 +192,28 @@ export default {
 
 <style scoped>
 .questionnaire {
-  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  background: rgba(116, 192, 253, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  /* background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%); */
   color: white;
+}
+
+.bg-yes-btn:hover {
+  background: rgba(125, 211, 33, 0.522);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+}
+
+.bg-no-btn:hover {
+  background: rgba(240, 110, 136, 0.555);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  /* border: 1px solid rgba(255, 255, 255, 0.18); */
 }
 
 .correct-view {

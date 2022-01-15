@@ -11,7 +11,13 @@ export default {
       { hid: "description", name: "description", content: "" },
       { name: "format-detection", content: "telephone=no" },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        href: "https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css",
+        rel: "stylesheet",
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
