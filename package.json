@@ -36,10 +36,9 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.12.1",
     "jest": "^27.4.7",
-    "jsdom-global": "^3.0.2",
     "postcss": "^8.4.4",
     "prettier": "^2.3.2",
-    "vue-jest": "^3.0.7",
-    "supertest": "^6.0.1"
+    "supertest": "^6.0.1",
+    "vue-jest": "^3.0.7"
   }
 }
