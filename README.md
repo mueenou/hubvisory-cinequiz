@@ -9,6 +9,9 @@ $ npm install
 # serve with hot reload at localhost:3000
 $ npm run dev
 
+# do some test with jest
+$ npm run test
+
 # build for production and launch server
 $ npm run build
 $ npm run start
@@ -16,6 +19,25 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
+Bonjour, voici mon test. En espérant qu'il vous plaise. J'aimerai apporter quelques précisions
+Tout d'abord j'ai essayé de faire toutes les tâches qui sont dans le Kanban y compris ceux "bonus". Je me suis débrouiller pour faire marcher cela même si ce n'est pas le plus
+beau à voir, j'espère que vous en serait satisfait.
+
+- Je n'ai pas mis la clé API dans un .env fichier car je ne voulais pas que vous perdiez du temps à en créer une.
+
+- J'ai essayé de mettre des commentaires avant chaque fonction/method pour que cela soit un peu plus clair.
+
+- Je n'ai pas utilisé de store même si c'est de base installé sur NuxtJS. Je ne trouvais pas très judicieux d'en solliciter au vu de la grandeur du projet et du nombre de composants.
+
+- J'ai fais l'application en anglais.
+
+- J'ai essayé d'apporter de la responsivité pour mobile, je sais qu'il y a de l'amélioration à apporter. Avec un peu plus de temps, sans cela sera sans aucun doûtes meilleur.
+- J'ai opté pour un design qui est assez tendance actuellement, notamment le glassmorphisme comme on l'appelle (l'effet verre, plexiglass)
+- J'ai utilisé Tailwind.css comme framework/librairie css pour accélérer un peu le travail cela dit il y a aussi du css basique pour apporter plus de détails et des données spécifique aux propriétés.
+
+Voilà, je vous remercie de votre compréhension et de l'attention que vous portez à ma condidature.
+À très bientôt.
+
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
