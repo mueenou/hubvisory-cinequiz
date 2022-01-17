@@ -19,7 +19,7 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
-Bonjour, voici mon test. En espérant qu'il vous plaise. J'aimerai apporter quelques précisions
+Bonjour, voici mon test. En espérant qu'il vous plaise. J'aimerai apporter quelques précisions.
 Tout d'abord j'ai essayé de faire toutes les tâches qui sont dans le Kanban y compris ceux "bonus". Je me suis débrouiller pour faire marcher cela même si ce n'est pas le plus
 beau à voir, j'espère que vous en serait satisfait.
 
@@ -31,11 +31,11 @@ beau à voir, j'espère que vous en serait satisfait.
 
 - J'ai fais l'application en anglais.
 
-- J'ai essayé d'apporter de la responsivité pour mobile, je sais qu'il y a de l'amélioration à apporter. Avec un peu plus de temps, sans cela sera sans aucun doûtes meilleur.
+- J'ai essayé d'apporter de la responsivité pour mobile, je sais qu'il y a de l'amélioration à apporter. Avec un peu plus de temps, cela sera sans aucun doûtes meilleur.
 - J'ai opté pour un design qui est assez tendance actuellement, notamment le glassmorphisme comme on l'appelle (l'effet verre, plexiglass)
 - J'ai utilisé Tailwind.css comme framework/librairie css pour accélérer un peu le travail cela dit il y a aussi du css basique pour apporter plus de détails et des données spécifique aux propriétés.
 
-Voilà, je vous remercie de votre compréhension et de l'attention que vous portez à ma condidature.
+Voilà, je vous remercie de votre compréhension et de l'attention que vous portez à ma candidature.
 À très bientôt.
 
 
