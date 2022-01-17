@@ -1,0 +1,72 @@
+[
+    {
+        "id":1,
+        "actor":"Tobey Maguire",
+        "movie":"Spider-man: No way home",
+        "answers":[
+        "yes",
+        "no"
+        ],
+        "correct_answer":1
+    },
+    {
+        "id":2,
+        "actor":"Zendaya",
+        "movie":"Avengers",
+        "answers":[
+        "yes",
+        "no"
+        ],
+        "correct_answer":2
+    },
+    {
+        "id":3,
+        "actor":"Ben Affleck",
+        "movie":"The Dark knight",
+        "answers":[
+        "yes",
+        "no"
+        ],
+        "correct_answer":2
+    },
+    {
+        "id":4,
+        "actor":"Leonardo Dicaprio",
+        "movie":"The wolf of wall street",
+        "answers":[
+        "yes",
+        "no"
+        ],
+        "correct_answer":1
+    },
+    {
+        "id":5,
+        "actor":"Christian Bale",
+        "movie":"The dark knight",
+        "answers":[
+        "yes",
+        "no"
+        ],
+        "correct_answer":1
+    },
+    {
+        "id":6,
+        "actor":"Clint Eastwood",
+        "movie":"Scary movie",
+        "answers":[
+        "yes",
+        "no"
+        ],
+        "correct_answer":2
+    },
+    {
+        "id":7,
+        "actor":"Jason Statham",
+        "movie":"Fast & Furious",
+        "answers":[
+        "yes",
+        "no"
+        ],
+        "correct_answer":1
+    }
+]

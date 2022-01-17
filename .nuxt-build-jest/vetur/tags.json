@@ -1,0 +1,11 @@
+{
+  "GameOver": {
+    "description": "Auto imported from components/GameOver/GameOver.vue"
+  },
+  "Navbar": {
+    "description": "Auto imported from components/Navbar/Navbar.vue"
+  },
+  "Questionnaire": {
+    "description": "Auto imported from components/Questionnaire/Questionnaire.vue"
+  }
+}

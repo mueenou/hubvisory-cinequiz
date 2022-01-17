@@ -24,7 +24,10 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: "@/plugins/vue-awesome-swiper.js", mode: "client" },
+    { src: "@/plugins/vue-touch.js", mode: "client" },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -40,6 +43,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     "cookie-universal-nuxt",
+    "vue-social-sharing/nuxt",
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

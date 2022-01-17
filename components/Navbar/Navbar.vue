@@ -21,35 +21,17 @@
     </div>
     <div
       v-show="dropdownOpen"
-      class="dropdown absolute right-1 top-11 mt-4 py-2 bg-white text-white rounded-md shadow-xl z-20"
+      class="dropdown absolute right-1 top-11 mt-4 py-2 text-white rounded-md shadow-xl z-20"
     >
       <a
         href="#"
-        class="block px-4 py-2 text-sm tracking-widest capitalize hover:bg-blue-400 hover:text-white"
+        class="block duration-300 px-4 py-2 text-sm tracking-widest capitalize hover:bg-blue-400 hover:text-white"
       >
         your profile
       </a>
       <a
         href="#"
-        class="block px-4 py-2 text-sm tracking-widest capitalize hover:bg-blue-400 hover:text-white"
-      >
-        Your projects
-      </a>
-      <a
-        href="#"
-        class="block px-4 py-2 text-sm tracking-widest capitalize hover:bg-blue-400 hover:text-white"
-      >
-        Help
-      </a>
-      <a
-        href="#"
-        class="block px-4 py-2 text-sm tracking-widest capitalize hover:bg-blue-400 hover:text-white"
-      >
-        Settings
-      </a>
-      <a
-        href="#"
-        class="block px-4 py-2 text-sm tracking-widest capitalize hover:bg-blue-400 hover:text-white"
+        class="block duration-300 px-4 py-2 text-sm tracking-widest capitalize hover:bg-blue-400 hover:text-white"
       >
         Sign Out
       </a>
